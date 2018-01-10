@@ -143,7 +143,7 @@ Softmax classifier的训练过程与我们之前介绍的二元分类问题有�
 
 $\hat y=\left[ \begin{array}{c} 0.3 \\ 0.2 \\ 0.1 \\ 0.4 \end{array} \right]$；$y=\left[ \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array} \right]$
 
-从$\hat{y}$值来看，$P\left( y=4|x \right)=0.4$，概率最大，而真实样本属于第2类，因此该预测效果不佳。我们定义softmax classifier的loss function为：
+从$\hat{y}$值来看，$P\left( y=4|x \right)=0.4$，概率最大，而真实样本属于第2类，因此该预测效果不佳。我们定义softmax classifier的loss function为（**交叉熵**）：
 
 $L\left( \hat{y},y \right)=-\sum_{j=1}^{4}{y_{j}\cdot \log \hat{y}}$
 
@@ -186,3 +186,16 @@ $dZ^{[L]}=A^{[L]}-Y$
 ## 3.11 TensorFlow
 
 TensorFlow的最大优点就是采用数据流图（data flow graphs）来进行数值运算。图中的节点（Nodes）表示数学操作，图中的线（edges）则表示在节点间相互联系的多维数据数组，即张量（tensor）。而且它灵活的架构让你可以在多种平台上展开计算，例如台式计算机中的一个或多个CPU（或GPU），服务器，移动设备等等。
+
+------
+
+交叉熵：
+
+给定两个概率分布p和q，通过q来表示p的交叉熵为：
+
+$H\left( p,q \right)=-\sum_{x}^{}{p\left( x \right)\log q\left( x \right)}$
+
+交叉熵刻画的是两个概率分布的距离，然而神经网络的输出却不一定是一个概率分布。采用Softmax回归就把神经网络的输出变成了一个概率分布，从而可以通过交叉熵计算预测的概率分布和真实答案的概率分布之间的距离。
+
+从交叉熵的公式中可以看到交叉熵函数不是对称的（$H\left( p,q \right)\not=H\left( q,p \right)$），**它刻画的是通过概率分布p来表达概率分布q的困难程度**。所以当交叉熵作为神经网络的损失函数时，p代表的是正确答案，q代表的是预测值。交叉熵越小，两个概率分布越接近。
+
