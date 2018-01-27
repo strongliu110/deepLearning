@@ -1,7 +1,5 @@
 # 超参数调试、Batch Norm 和程序框架
 
-[TOC]
-
 ## 3.1 调试处理
 
 深度神经网络需要调试的超参数（Hyperparameters）较多，包括：
