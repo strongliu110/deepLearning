@@ -6,8 +6,8 @@ import os
 
 from data_load import get_data_df, get_test_df, load_test_df
 from label_encode import Label
-from models import get_compile_model, load_pretrained_models
-from model import Model
+from modles import get_compile_model, load_pretrained_models
+from modle import Model
 
 if __name__ == "__main__":
     # 数据加载

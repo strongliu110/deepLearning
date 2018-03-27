@@ -44,7 +44,7 @@ def __pretrained_model(arch, input_shape, num_classes, pooling='avg'):
 
     x = model.output
 
-    if arch == 'densenet169' or arch == 'densenet121':
+    if arch.startswith('resnet'):
         x = Flatten()(x)
 
     x = Dense(256, activation='relu')(x)
